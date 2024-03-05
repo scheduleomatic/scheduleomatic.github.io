@@ -102,7 +102,7 @@ $(function()
           .removeClass('dancer0')
           .addClass('dancer' + col)
           .val('')
-          .attr('tabindex', col * 10);
+          .attr('tabindex', row + col * 10);
       $(this).after(clone);
     }
   });
