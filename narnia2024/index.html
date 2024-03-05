@@ -1,5 +1,146 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
+<script src=https://code.jquery.com/jquery-3.7.1.slim.min.js></script>
 <title>Narnia 2024 Schedule-o-Matic</title>
 
 <h1>Schedule-o-Matic</h1>
+
+<!--
+  Make tab go down columns, not across
+-->
+
+<div id=input>
+  <table>
+    <tr>
+      <th>Dancer Name:
+      <td><input name=n_d0 class="name dancer0">
+    <tr>
+      <th>Ballet:
+      <td>
+        <select name=b_d0 class="ballet dancer0">
+          <option value=  >none
+          <option value=-2>Sat 09:45, Stepping Stones
+          <option value=-1>Sat 10:30, Pre-Primary
+          <option value=0 >Sat 11:30, Primary
+          <option value=1 >Sat 12:30, Grade 1
+          <option value=2 >Mon 16:00, Grade 2
+          <option value=3 >Mon 16:00, Grade 3
+          <option value=6 >Tue 18:30, Class Level 6/Grade 5
+          <option value=4 >Wed 18:00, Class Level 4
+          <option value=7 >Fri 16:30, Grade 6
+          <option value=5 >Fri 18:30, Class Level 5
+        </select>
+    <tr>
+      <th>Associates:
+      <td>
+        <select name=a_d0 class="associates dancer0">
+          <option value=  >none
+          <option value=1 >Mon 18:00, Junior
+          <option value=2 >Mon 19:30, Senior
+        </select>
+    <tr>
+      <th>Modern/Tap:
+      <td>
+        <select name=m_d0 class="modern dancer0">
+          <option value=  >none
+          <option value=-1>Tue 15:45, Pre-Primary
+          <option value=0 >Tue 16:30, Primary
+          <option value=3 >Tue 17:30, Grade 3
+          <option value=1 >Wed 16:00, Grade 1
+          <option value=2 >Wed 17:00, Grade 2
+          <option value=10>Wed 19:00, Adult Beginners
+          <option value=4 >Thu 16:00, Grade 4
+          <option value=5 >Thu 18:00, Grade 5
+          <option value=6 >Thu 19:00, Grade 6
+          <option value=11>Fri 19:30, Adult Improvers
+        </select>
+    <tr>
+      <th>Jazz:
+      <td>
+        <select name=j_d0 class="jazz dancer0">
+          <option value=  >none
+          <option value=1 >Bronze
+          <option value=2 >Silver
+          <option value=3 >Gold
+        </select>
+    <tr>
+      <th>Choreography:
+      <td>
+        <select name=c_d0 class="choreography dancer0">
+          <option value=  >none
+          <option value=1 >Fri 17:30
+        </select>
+    <tr>
+      <th>Principal Part:
+      <td>
+        <select name=p_d0 class="principal dancer0">
+          <option value=  >none
+          <option value=fc>Father Christmas
+        </select>
+  </table>
+  <p><button id=go>Create Schedule</button>
+</div>
+
+<p id=msg>Initial message</p>
+<div id=output>
+</div>
+
+<script>
+$(function()
+{
+  var row = 0;
+  // Clone the dancer 0 interface for dancers 1 to 3:
+  $('#input td').each(function()
+  {
+    $(this).find(':input').attr('tabindex', ++row);
+    for (let col = 3; col > 0; col--)
+    {
+      var clone = $(this).clone();
+      var widget = clone.find(':input');
+      widget
+          .attr('name', widget.attr('name').replace(/0$/, col))
+          .removeClass('dancer0')
+          .addClass('dancer' + col)
+          .val('')
+          .attr('tabindex', col * 10);
+      $(this).after(clone);
+    }
+  });
+
+  // Focus the first widget:
+  $('#input :input').first().focus();
+
+  $('#go').click(function()
+  {
+    $('#msg').html('Button clicked!');
+
+    $('#output').html($('.ballet.dancer0').val());
+
+  });
+});
+</script>
+
+<!--
+
+All the types of dancing
+
+Parts (grouped)
+
+Reading from URL hash
+
+Writing to URL hash
+
+Save/bookmark link
+
+Print CSS to hide form
+
+General CSS for niceness
+
+Costume collection
+
+Include what to bring to each (at least normal kit, box, evacuee stuff, etc;
+and bring back hair fasteners)
+
+Plug St John's, either way
+
+-->
