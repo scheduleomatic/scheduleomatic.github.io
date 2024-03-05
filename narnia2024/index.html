@@ -92,11 +92,11 @@ $(function()
   // Clone the dancer 0 interface for dancers 1 to 3:
   $('#input td').each(function()
   {
-    $(this).find(':input').attr('tabindex', ++row);
+    $(this).children(':input').attr('tabindex', ++row);
     for (let col = 3; col > 0; col--)
     {
       var clone = $(this).clone();
-      var widget = clone.find(':input');
+      var widget = clone.children(':input');
       widget
           .attr('name', widget.attr('name').replace(/0$/, col))
           .removeClass('dancer0')
