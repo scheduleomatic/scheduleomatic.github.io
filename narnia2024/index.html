@@ -114,19 +114,17 @@ $(function()
 
     var field = $('#input tr').map(function() { return $(this).attr('class') })
         .get();
-    var dancer = [];
-    for (let col = 0; col < MAX_DANCERS; col++)
-    {
-      var data = $.grep($.map(field, function(label)
+
+    var dancer = $.grep($.map([...Array(MAX_DANCERS).keys()], function(col)
+        {
+          return [$.grep($.map(field, function(label)
           {
             return {
               label: label,
               val:   $('#input tr.' + label + ' :input').eq(col).val(),
             };
-          }), function(item) { return item.val != '' });
-      if (data.length > 0)
-          dancer.push(data);
-    }
+          }), function(item) { return item.val != '' })];
+        }), function(record) { return record.length > 0 });;
     console.log(dancer);
 
     var output = '';
