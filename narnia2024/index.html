@@ -2,9 +2,22 @@
 <meta charset=utf-8>
 <script src=https://code.jquery.com/jquery-3.7.1.slim.min.js></script>
 <link rel=stylesheet href=../style.css>
-<title>Narnia 2024 Schedule-o-Matic</title>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href=https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap rel=stylesheet>
+<link href=https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap rel=stylesheet>
 
-<h1>Schedule-o-Matic</h1>
+<title>Schedule-o-Matic: Narnia 2024</title>
+
+<header>
+  <h1>Schedule-o-Matic</h1>
+  <h2>Narnia 2024</h2>
+</header>
+
+<p>To generate a schedule of who needs to be where and when for all the dancers
+in your household, select below which classes they are each in (and their
+principal part, if any), then press the button. Name is optional if there's
+only one dancer.
 
 <div id=input>
   <table>
@@ -147,7 +160,7 @@ $(function()
           return "";
         });
     if (!text.every((content) => content == ""))
-      row.push("Saturday March 9th: Act 2 Rehearsal", text);
+      row.push("<h3><strong>Saturday March 9th</strong> Act 2 Rehearsal<h3>", text);
 
     var output = '';
 

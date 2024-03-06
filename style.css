@@ -1,6 +1,64 @@
 body
 {
-  font-family: sans-serif;
+  color:            #000;
+  background-color: #FFF;
+
+  margin:    1ex auto;
+  padding:   0;
+  max-width: 65em;
+}
+
+body
+{
+  font-family:         "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:         500;
+}
+
+h1, h2, h3, button, #output th
+{
+  font-family:         "Hepta Slab", serif;
+  font-optical-sizing: auto;
+  font-weight:         600;
+}
+
+h1, h2
+{
+  display:   inline;
+  font-size: 250%;
+}
+
+h1
+{
+  padding-right: 0.2em;
+}
+
+h2
+{
+  color: #04BB00;
+}
+
+h3
+{
+  color: #777;
+  font-size: 160%;
+}
+
+h3 > strong
+{
+  font-weight: inherit;
+  color:       #000;
+}
+
+p
+{
+  max-width:   48em;
+  line-height: 1.4;
+}
+
+th
+{
+  text-align: left;
 }
 
 tr > :nth-of-type(1):not([colspan]) { background-color: #FEEDD9 }
@@ -8,3 +66,32 @@ tr > :nth-of-type(2):not([colspan]) { background-color: #E0D6EE }
 tr > :nth-of-type(3):not([colspan]) { background-color: #E0E8F2 }
 tr > :nth-of-type(4):not([colspan]) { background-color: #E3EDE4 }
 #input th                           { background-color: transparent }
+
+#input td
+{
+  width:   12em;
+  padding: 0.5ex 0.5em;
+}
+
+#input input
+{
+  width: 95%;
+}
+
+#input select
+{
+  width: 100%;
+}
+
+button
+{
+  background-color: #04BB00;
+  color:            #FFF;
+  font-size: 110%;
+}
+
+#output > table
+{
+  width: 100%;
+  table-layout: fixed;
+}
