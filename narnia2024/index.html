@@ -115,7 +115,8 @@ $(function()
     var field = $('#input tr').map(function() { return $(this).attr('class') })
         .get();
 
-    var dancer = $.grep($.map([...Array(MAX_DANCERS).keys()], function(col)
+    var dancer = $.map($.grep($.map([...Array(MAX_DANCERS).keys()],
+        function(col)
         {
           return [$.grep($.map(field, function(label)
           {
@@ -124,12 +125,19 @@ $(function()
               val:   $('#input tr.' + label + ' :input').eq(col).val(),
             };
           }), function(item) { return item.val != '' })];
-        }), function(record) { return record.length > 0 });;
+        }),
+        function(record) { return record.length > 0 }),
+        function(record)
+        {
+          return Object.fromEntries
+          (
+            $.map(record, function(pair) { return [[pair.label, pair.val]] })
+          )
+        });
     console.log(dancer);
 
     var output = '';
     $('#output').html(output);
-
   });
 });
 </script>
