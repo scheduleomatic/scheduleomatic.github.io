@@ -5,10 +5,6 @@
 
 <h1>Schedule-o-Matic</h1>
 
-<!--
-  Make tab go down columns, not across
--->
-
 <div id=input>
   <table>
     <tr class=name>
@@ -81,7 +77,6 @@
   <p><button id=go>Create Schedule</button>
 </div>
 
-<p id=msg>Initial message</p>
 <div id=output>
 </div>
 
@@ -107,11 +102,9 @@ $(function()
   // Focus the first widget:
   $('#input :input').first().focus();
 
-  // Make output appear:
+  // Show the shedule:
   $('#go').click(function()
   {
-    $('#msg').html('Button clicked!');
-
     var field = $('#input tr').map(function() { return $(this).attr('class') })
         .get();
 
@@ -136,27 +129,61 @@ $(function()
         });
 
     var row = [];
-    var needed = false;
-    var content = $.map(dancer,
-        function(dancer, num)
+
+    var text = $.map(dancer,
+        function(dancer)
         {
-          if (dancer.name === undefined)
-            return 'Dancer ' + (num + 1);
-          else
-          {
-            needed = true;
-            return dancer.name;
-          }
+          if (dancer.ballet >= 2)
+              return "Big ballet";
+          if (dancer.ballet < 2)
+              return "Little ballet";
+          return "";
         });
-    if (needed || content.length > 1)
-        row.push($.map(content, function(cell) { return '<th>' + cell }));
+    if (!text.every(function(content) { return content == "" }))
+      row.push("Saturday March 9th: Act 2 Rehearsal", text);
 
     var output = '';
+
+    // Only show the table if there are any rows:
     if (row.length >= 1)
-        output =
-            '<table>'
-          + $.map(row, function(row) { return '<tr>' + row.join('') }).join('')
+    {
+      output = '<table>';
+
+      // Have a header row of names if there's more than 1 dancer, or if any
+      // names have been specified:
+      var needed = dancer.length > 1;
+      var name = $.map(dancer,
+          function(dancer, col)
+          {
+            // If no name specified, use “Dancer 1”, etc when multiple dancers:
+            if (dancer.name === undefined)
+              return 'Dancer ' + (col + 1);
+            else
+            {
+              needed = true;
+              return dancer.name;
+            }
+          });
+      if (needed)
+        output += '<tr>'
+            + $.map(name, function(text) { return '<th>' + text });
+
+      // Add the rest of the table:
+      output += $.map(row,
+          function(cell)
+          {
+            // A row of cells:
+            if (Array.isArray(cell))
+              return '<tr>' + $.map(cell, function(text) { return '<td>' + text }).join('');
+
+            // A heading row, spanning the cells:
+            else
+              return '<tr><td colspan=' + dancer.length + '>' + cell;
+          }).join("\n")
+
           + '</table>';
+    }
+
     $('#output').html(output);
   });
 });
