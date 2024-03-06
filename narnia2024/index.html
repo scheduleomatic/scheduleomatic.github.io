@@ -86,16 +86,16 @@ $(function()
 {
   var row = 0;
   // Clone the dancer 0 interface for dancers 1 to 3:
-  $('#input td').each(function()
+  $('#input td').each((i, cell) =>
   {
-    $(this).children(':input').attr('tabindex', ++row);
+    $(cell).children(':input').attr('tabindex', ++row);
     for (let col = MAX_DANCERS; col > 1; col--)
     {
-      var clone = $(this).clone();
+      var clone = $(cell).clone();
       clone.children(':input')
         .val('')
         .attr('tabindex', row + col * 10);
-      $(this).after(clone);
+      $(cell).after(clone);
     }
   });
 
@@ -105,33 +105,39 @@ $(function()
   // Show the shedule:
   $('#go').click(function()
   {
-    var field = $('#input tr').map(function() { return $(this).attr('class') })
-        .get();
+    // List of fields per dancer, taken from the row classes:
+    var field = $('#input tr').map((i, row) => $(row).attr('class')).get();
 
-    var dancer = $.map($.grep($.map([...Array(MAX_DANCERS).keys()],
-        function(col)
-        {
-          return [$.grep($.map(field, function(label)
-          {
-            return {
-              label: label,
-              val:   $('#input tr.' + label + ' :input').eq(col).val(),
-            };
-          }), function(item) { return item.val != '' })];
-        }),
-        function(record) { return record.length > 0 }),
-        function(record)
-        {
-          return Object.fromEntries
-          (
-            $.map(record, function(pair) { return [[pair.label, pair.val]] })
-          )
-        });
+    var dancer = $.map
+    (
+      $.grep
+      (
+        $.map
+        (
+          [...Array(MAX_DANCERS).keys()],
+          (col) =>
+              [
+                $.grep
+                (
+                  $.map(field, (label) =>
+                  ({
+                    label: label,
+                    val:   $('#input tr.' + label + ' :input').eq(col).val(),
+                  })
+                ),
+                (item) => item.val != '')
+              ]
+        ),
+        (record) => record.length > 0
+      ),
+      (record) => Object.fromEntries
+          ($.map(record, (pair) => [[pair.label, pair.val]]))
+    );
 
     var row = [];
 
     var text = $.map(dancer,
-        function(dancer)
+        (dancer) =>
         {
           if (dancer.ballet >= 2)
               return "Big ballet";
@@ -139,7 +145,7 @@ $(function()
               return "Little ballet";
           return "";
         });
-    if (!text.every(function(content) { return content == "" }))
+    if (!text.every((content) => content == ""))
       row.push("Saturday March 9th: Act 2 Rehearsal", text);
 
     var output = '';
@@ -153,7 +159,7 @@ $(function()
       // names have been specified:
       var needed = dancer.length > 1;
       var name = $.map(dancer,
-          function(dancer, col)
+          (dancer, col) =>
           {
             // If no name specified, use “Dancer 1”, etc when multiple dancers:
             if (dancer.name === undefined)
@@ -165,22 +171,21 @@ $(function()
             }
           });
       if (needed)
-        output += '<tr>'
-            + $.map(name, function(text) { return '<th>' + text });
+        output += '<tr>' + $.map(name, (text) => '<th>' + text).join('');
 
       // Add the rest of the table:
-      output += $.map(row,
-          function(cell)
-          {
-            // A row of cells:
-            if (Array.isArray(cell))
-              return '<tr>' + $.map(cell, function(text) { return '<td>' + text }).join('');
+      output += $.map
+          (
+            row,
+            (cell) =>
+                Array.isArray(cell) ?
 
-            // A heading row, spanning the cells:
-            else
-              return '<tr><td colspan=' + dancer.length + '>' + cell;
-          }).join("\n")
+                // A row of cells:
+                '<tr>' + $.map(cell, (text) => '<td>' + text).join('')
 
+                // A heading row, spanning the cells:
+                : '<tr><td colspan=' + dancer.length + '>' + cell
+          ).join("\n")
           + '</table>';
     }
 
