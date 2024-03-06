@@ -134,9 +134,29 @@ $(function()
             $.map(record, function(pair) { return [[pair.label, pair.val]] })
           )
         });
-    console.log(dancer);
+
+    var row = [];
+    var needed = false;
+    var content = $.map(dancer,
+        function(dancer, num)
+        {
+          if (dancer.name === undefined)
+            return 'Dancer ' + (num + 1);
+          else
+          {
+            needed = true;
+            return dancer.name;
+          }
+        });
+    if (needed || content.length > 1)
+        row.push($.map(content, function(cell) { return '<th>' + cell }));
 
     var output = '';
+    if (row.length >= 1)
+        output =
+            '<table>'
+          + $.map(row, function(row) { return '<tr>' + row.join('') }).join('')
+          + '</table>';
     $('#output').html(output);
   });
 });
