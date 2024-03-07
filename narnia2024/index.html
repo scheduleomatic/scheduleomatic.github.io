@@ -261,8 +261,7 @@ const SCHEDULE =
             desc: 'Professor’s House/Wardrobe',
             for:   dancer =>
                    dancer.associates
-                || ['mm', 'pc', 'p', 's', 'l', 'e', 'w', 'd', 'm']
-                    .includes(dancer.principal),
+                || ['mm', 'pc', 'p', 's', 'l', 'e'].includes(dancer.principal),
           },
           {
             from: '19:30',
