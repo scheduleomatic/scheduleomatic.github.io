@@ -37,15 +37,16 @@
           <option value=w >White Witch
           <option value=d >Dwarf
           <option value=m >Maugrim
+          <option value=wr>Witch’s Reindeer
           <option value=mb>Mr Beaver
           <option value=fb>Mrs Beaver
           <option value=mf>Mr Fox
           <option value=mt>Mr Tumnus
-          <option value=rd>Reindeer
           <option value=r >Robin
           <option value=ws>White Stag
           <option value=mm>Mrs McCreedy
           <option value=pc>Professor Christmas
+          <option value=sr>Santa’s Reindeer
         </select>
     <tr class=ballet>
       <th>Ballet:
@@ -200,8 +201,8 @@ const SCHEDULE =
                 || dancer.bollywood
                 || dancer.jazz
                 || dancer.choreography
-                || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'rd', 'a', 'm',
-                    'mt', 'ws', 'pc'].includes(dancer.principal),
+                || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'wr', 'a', 'm',
+                    'mt', 'ws', 'pc', 'sr'].includes(dancer.principal),
           },
         ],
         footer:   state => 'Footer message goes here',
@@ -243,7 +244,7 @@ const SCHEDULE =
             desc: 'Christmas Party',
             for:   dancer =>
                    dancer.modern == 3
-                || ['pc', 'rd', 'mb', 'fb', 'p', 's', 'l', 'e', 'w', 'd']
+                || ['pc', 'sr', 'mb', 'fb', 'p', 's', 'l', 'e', 'w', 'd', 'wr']
                     .includes(dancer.principal),
           },
           {
@@ -345,8 +346,8 @@ const SCHEDULE =
                 || dancer.bollywood
                 || dancer.jazz
                 || dancer.choreography
-                || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'rd', 'a', 'm',
-                    'mt', 'ws', 'pc'].includes(dancer.principal),
+                || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'wr', 'a', 'm',
+                    'mt', 'ws', 'pc', 'sr'].includes(dancer.principal),
           },
           {
             from: '20:00',
@@ -354,7 +355,7 @@ const SCHEDULE =
             desc: 'Turkish Delight/Hot Chocolate',
             for:   dancer =>
                    dancer.ballet >= 6
-                || ['e', 'w', 'd', 'ws'].includes(dancer.principal),
+                || ['e', 'w', 'd', 'wr'].includes(dancer.principal),
           },
           {
             from: '20:30',
