@@ -148,7 +148,22 @@ const SCHEDULE =
           },
         ],
         footer:   state => 'Footer message goes here',
-      }
+      },
+      {
+        date:     'Sunday March 10th',
+        desc:     'Costume Collection',
+        location: 'Lynne’s Home',
+        event:
+        [
+          {
+            from: '09:00',
+            to:   '12:00',
+            desc: 'Collect costume — bring a carrier to keep it safe',
+            for:  dancer => dancer.principal || dancer.jazz
+                || dancer.ballet >= 2 || dancer.modern >= 2,
+          },
+        ],
+      },
     ];
 $(function()
 {
@@ -291,8 +306,6 @@ Save/bookmark link
 Print CSS to hide form
 
 General CSS for niceness
-
-Costume collection
 
 Include what to bring to each (at least normal kit, box, evacuee stuff, etc;
 and bring back hair fasteners)
