@@ -117,7 +117,14 @@ button:hover
 
 #output td, #output th
 {
-  padding: 0.5ex 0.5em;
+  padding:        0.5ex 0.5em;
+  vertical-align: top;
+}
+
+#output td[colspan]
+{
+  padding-left:  0;
+  padding-right: 0;
 }
 
 #output td > :first-child { margin-top:    0 }
