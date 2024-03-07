@@ -44,6 +44,7 @@
           <option value=rd>Reindeer
           <option value=r >Robin
           <option value=st>Stag
+          <option value=mm>Mrs McCreedy
           <option value=pc>Professor Christmas
         </select>
     <tr class=ballet>
@@ -214,7 +215,7 @@ const SCHEDULE =
           {
             from: '16:00',
             to:   '16:45',
-            desc: 'Beavers’ scene',
+            desc: 'Beavers',
             for:   dancer =>
                    dancer.ballet == 'ss'
                 || ['mb', 'fb', 'l'].includes(dancer.principal),
@@ -227,6 +228,59 @@ const SCHEDULE =
                    dancer.choreography
                 || ['mb', 'fb', 'r', 'l', 'e', 'p', 's']
                       .includes(dancer.principal),
+          },
+          {
+            from: '17:15',
+            to:   '18:00',
+            desc: 'Evacuees/Train Station',
+            for:   dancer =>
+                   dancer.modern <= 4
+                || ['l', 'e', 'p', 's'].includes(dancer.principal),
+          },
+          {
+            from: '18:00',
+            to:   '18:30',
+            desc: 'Christmas Party',
+            for:   dancer =>
+                   dancer.modern == 3
+                || ['pc', 'rd', 'mb', 'fb', 'p', 's', 'l', 'e', 'w', 'd']
+                    .includes(dancer.principal),
+          },
+          {
+            from: '18:30',
+            to:   '18:45',
+            desc: 'Statues/Queen’s Castle',
+            for:   dancer =>
+                   dancer.choreography
+                || ['e', 'w', 'd', 'm']
+                    .includes(dancer.principal),
+          },
+          {
+            from: '18:45',
+            to:   '19:30',
+            desc: 'Professor’s House/Wardrobe',
+            for:   dancer =>
+                   dancer.associates
+                || ['mm', 'pc', 'p', 's', 'l', 'e', 'w', 'd', 'm']
+                    .includes(dancer.principal),
+          },
+          {
+            from: '19:30',
+            to:   '20:15',
+            desc: 'Wolf Attacks',
+            for:   dancer =>
+                   dancer.jazz == 'g'
+                || ['mt', 'mb', 'fb', 'l', 's', 'p', 'e', 'w', 'd']
+                    .includes(dancer.principal),
+          },
+          {
+            from: '20:15',
+            to:   '21:00',
+            desc: 'Aslan & Queen’s Conversation',
+            for:   dancer =>
+                   dancer.bollywood
+                || dancer.modern >= 4
+                || ['a', 'l', 's', 'p', 'e', 'w'].includes(dancer.principal),
           },
         ],
       },
