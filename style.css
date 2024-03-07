@@ -51,7 +51,7 @@ h3 > strong
   padding-right: 0.2em;
 }
 
-p
+#input p
 {
   max-width:   48em;
   line-height: 1.4;
@@ -106,10 +106,8 @@ button:hover
   color:            #FF6;
 }
 
-#output
-{
-  margin-top: 5ex;
-}
+#input  { margin-bottom: 1.5ex }
+#output { margin-top:    3.5ex }
 
 #output > table
 {
@@ -125,3 +123,11 @@ button:hover
 #output td > :first-child { margin-top:    0 }
 #output td > :last-child  { margin-bottom: 0 }
 #output h3 { padding: 2ex 0 0.5ex }
+
+@media print
+{
+  #input { display: none }
+
+  h1, h2 { font-size: 180% }
+  h3     { font-size: 140% }
+}
