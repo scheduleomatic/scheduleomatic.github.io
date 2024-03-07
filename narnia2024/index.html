@@ -122,7 +122,7 @@ $(function()
     // List of fields per dancer, taken from the row classes:
     var field = $('#input tr').map((i, row) => $(row).attr('class')).get();
 
-    var dancer = $.map
+    var family = $.map
     (
       $.grep
       (
@@ -171,8 +171,8 @@ $(function()
 
       // Have a header row of names if there's more than 1 dancer, or if any
       // names have been specified:
-      var needed = dancer.length > 1;
-      var name = $.map(dancer,
+      var needed = family.length > 1;
+      var name = $.map(family,
           (dancer, col) =>
           {
             // If no name specified, use “Dancer 1”, etc when multiple dancers:
@@ -198,7 +198,7 @@ $(function()
                 '<tr>' + $.map(cell, (text) => '<td>' + text).join('')
 
                 // A heading row, spanning the cells:
-                : '<tr><td colspan=' + dancer.length + '>' + cell
+                : '<tr><td colspan=' + family.length + '>' + cell
           ).join("\n")
           + '</table>';
     }
