@@ -129,23 +129,23 @@ $(function()
         $.map
         (
           [...Array(MAX_DANCERS).keys()],
-          (col) =>
+          col =>
               [
                 $.grep
                 (
-                  $.map(field, (label) =>
+                  $.map(field, label =>
                   ({
                     label: label,
                     val:   $('#input tr.' + label + ' :input').eq(col).val(),
                   })
                 ),
-                (item) => item.val != '')
+                item => item.val != '')
               ]
         ),
-        (record) => record.length > 0
+        record => record.length > 0
       ),
-      (record) => Object.fromEntries
-          ($.map(record, (pair) => [[pair.label, pair.val]]))
+      record => Object.fromEntries
+          ($.map(record, pair => [[pair.label, pair.val]]))
     );
 
     var row = [];
@@ -185,17 +185,17 @@ $(function()
             }
           });
       if (needed)
-        output += '<tr>' + $.map(name, (text) => '<th>' + text).join('');
+        output += '<tr>' + $.map(name, text => '<th>' + text).join('');
 
       // Add the rest of the table:
       output += $.map
           (
             row,
-            (cell) =>
+            cell =>
                 Array.isArray(cell) ?
 
                 // A row of cells:
-                '<tr>' + $.map(cell, (text) => '<td>' + text).join('')
+                '<tr>' + $.map(cell, text => '<td>' + text).join('')
 
                 // A heading row, spanning the cells:
                 : '<tr><td colspan=' + family.length + '>' + cell
