@@ -73,6 +73,13 @@ only one dancer.
           <option value=s >Silver
           <option value=g >Gold
         </select>
+    <tr class=bollywood>
+      <th>Bollywood:
+      <td>
+        <select>
+          <option value="">none
+          <option value=a >Adult Bollywood
+        </select>
     <tr class=choreography>
       <th>Choreography:
       <td>
@@ -85,18 +92,21 @@ only one dancer.
       <td>
         <select>
           <option value="">none
-          <option value=ps>Peter
-          <option value=ps>Susan
+          <option value=p >Peter
+          <option value=s >Susan
           <option value=e >Edmund
           <option value=l >Lucy
+          <option value=a >Aslan
           <option value=w >White Witch
           <option value=d >Dwarf
+          <option value=m >Maugrim
           <option value=mb>Mr Beaver
-          <option value=mb>Mrs Beaver
+          <option value=fb>Mrs Beaver
           <option value=mf>Mr Fox
           <option value=mt>Mr Tumnus
+          <option value=rd>Reindeer
           <option value=r >Robin
-          <option value=m >Maugrim
+          <option value=st>Stag
           <option value=pc>Professor Christmas
         </select>
   </table>
@@ -113,7 +123,7 @@ const SCHEDULE =
     [
       {
         date:     'Saturday March 9th',
-        desc:     'Act 2 Rehearsals',
+        desc:     'Act 2 Rehearsal',
         location: 'All Saints’ School',
         event:
         [
@@ -139,12 +149,13 @@ const SCHEDULE =
             from: '14:00',
             to:   '17:00',
             desc: 'Act 2 rehearsal',
-            for:  dancer => dancer.jazz == 'g'
+            for:   dancer =>
+                   dancer.jazz == 'g'
                 || dancer.ballet == -2
                 || dancer.choreography
                 || dancer.modern >= 3 && dancer.modern <= 4
-                || ['mt', 'ps', 'e', 'l', 'r', 'mb', 'm', 'w', 'd', 'pc',
-                    'mf'].includes(dancer.principal),
+                || ['mt', 'p', 's', 'e', 'l', 'r', 'mb', 'fb', 'm', 'w', 'd',
+                    'pc', 'mf'].includes(dancer.principal),
           },
         ],
         footer:   state => 'Footer message goes here',
@@ -159,10 +170,38 @@ const SCHEDULE =
             from: '09:00',
             to:   '12:00',
             desc: 'Collect costume — bring a carrier to keep it safe',
-            for:  dancer => dancer.principal || dancer.jazz
-                || dancer.ballet >= 2 || dancer.modern >= 2,
+            for:   dancer =>
+                   dancer.principal
+                || dancer.jazz
+                || dancer.bollywood
+                || dancer.ballet >= 2
+                || dancer.modern >= 2,
           },
         ],
+      },
+      {
+        date:     'Sunday March 17th',
+        desc:     'Act 3 Rehearsal',
+        location: 'All Saints’ School',
+        event:
+        [
+          {
+            from: '09:00',
+            to:   '12:00',
+            desc: 'Act 3 rehearsal',
+            for:   dancer =>
+                   dancer.ballet >= 2 && dancer.ballet <= 3
+                || dancer.ballet == 5
+                || dancer.modern >= 5 && dancer.modern <= 6
+                || dancer.associates
+                || dancer.bollywood
+                || dancer.jazz
+                || dancer.choreography
+                || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'rd', 'a', 'm',
+                    'mt', 'st', 'pc'].includes(dancer.principal),
+          },
+        ],
+        footer:   state => 'Footer message goes here',
       },
     ];
 $(function()
@@ -311,5 +350,7 @@ Include what to bring to each (at least normal kit, box, evacuee stuff, etc;
 and bring back hair fasteners)
 
 Plug St John's, either way
+
+Events in the past omitted?
 
 -->
