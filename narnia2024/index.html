@@ -43,7 +43,7 @@
           <option value=mt>Mr Tumnus
           <option value=rd>Reindeer
           <option value=r >Robin
-          <option value=st>Stag
+          <option value=ws>White Stag
           <option value=mm>Mrs McCreedy
           <option value=pc>Professor Christmas
         </select>
@@ -201,7 +201,7 @@ const SCHEDULE =
                 || dancer.jazz
                 || dancer.choreography
                 || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'rd', 'a', 'm',
-                    'mt', 'st', 'pc'].includes(dancer.principal),
+                    'mt', 'ws', 'pc'].includes(dancer.principal),
           },
         ],
         footer:   state => 'Footer message goes here',
@@ -281,6 +281,88 @@ const SCHEDULE =
                    dancer.bollywood
                 || dancer.modern >= 4
                 || ['a', 'l', 's', 'p', 'e', 'w'].includes(dancer.principal),
+          },
+        ],
+      },
+      {
+        date:     'Tuesday March 19th',
+        desc:     'In-Theatre Rehearsal',
+        location: 'King’s Hall — arrive 10 min before first on-stage time',
+        event:
+        [
+          {
+            from: '16:00',
+            to:   '16:45',
+            desc: 'Snow',
+            for:   dancer =>
+                   dancer.ballet <= 1 || dancer.ballet == 6,
+          },
+          {
+            from: '16:45',
+            to:   '17:30',
+            desc: 'Mice/Resurrection',
+            for:   dancer =>
+                   dancer.ballet == 2
+                || dancer.choreography
+                || ['a', 'l', 's', 'mt', 's'].includes(dancer.principal),
+          },
+          {
+            from: '17:30',
+            to:   '18:00',
+            desc: 'Lucy Meets Mr Tumnus/Fire',
+            for:   dancer =>
+                   ['2', '3', '5'].includes(dancer.ballet)
+                || ['l', 'mt', 'a', 'w', 'ws'].includes(dancer.principal),
+          },
+          {
+            from: '18:00',
+            to:   '18:45',
+            desc: 'Spring',
+            for:   dancer =>
+                   [2, 3, 5].includes(dancer.ballet)
+                || dancer.associates
+                || ['p', 's', 'l', 'e', 'w', 'd', 'mb', 'fb']
+                    .includes(dancer.principal),
+          },
+          {
+            from: '18:45',
+            to:   '19:30',
+            desc: 'Evils with Queen/Sacrifice/Fight',
+            for:   dancer =>
+                   dancer.jazz
+                || dancer.choreography
+                || ['p', 's', 'l', 'e', 'w', 'd', 'mb', 'fb', 'a']
+                    .includes(dancer.principal),
+          },
+          {
+            from: '19:30',
+            to:   '20:00',
+            desc: 'Coronation/Bows',
+            for:   dancer =>
+                   dancer.ballet >= 2 && dancer.ballet <= 3
+                || dancer.ballet == 5
+                || dancer.modern >= 5 && dancer.modern <= 6
+                || dancer.associates
+                || dancer.bollywood
+                || dancer.jazz
+                || dancer.choreography
+                || ['p', 's', 'l', 'mb', 'fb', 'e', 'w', 'd', 'rd', 'a', 'm',
+                    'mt', 'ws', 'pc'].includes(dancer.principal),
+          },
+          {
+            from: '20:00',
+            to:   '20:30',
+            desc: 'Turkish Delight/Hot Chocolate',
+            for:   dancer =>
+                   dancer.ballet >= 6
+                || ['e', 'w', 'd', 'ws'].includes(dancer.principal),
+          },
+          {
+            from: '20:30',
+            to:   '21:00',
+            desc: 'Babes of Blitz',
+            for:   dancer =>
+                   ['4', '5', 'ab', 'ai'].includes(dancer.modern),
           },
         ],
       },
