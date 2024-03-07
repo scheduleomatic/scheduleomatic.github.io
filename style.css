@@ -92,19 +92,31 @@ tr > :nth-of-type(4):not([colspan]) { background-color: #E3EDE4 }
 
 button
 {
-  background-color: #04BB00;
-  color:            #FFF;
   font-size:        110%;
   padding:          0.5ex 0.5em;
   border-style:     none;
   border-radius:    0.7ex;
+  background-color: #D9D9DF;
 }
 
-button:hover
+#go
+{
+  color:            #FFF;
+  background-color: #04BB00;
+}
+
+button:hover, #go:hover
 {
   background-color: #04A700;
   color:            #FF6;
 }
+
+button + button
+{
+  margin-left: 0.5em;
+}
+
+#print  { display: none }
 
 #input  { margin-bottom: 1.5ex }
 #output { margin-top:    3.5ex }

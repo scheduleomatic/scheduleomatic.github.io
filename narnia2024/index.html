@@ -110,7 +110,9 @@
           <option value=pc>Professor Christmas
         </select>
   </table>
-  <p><button id=go>Create Schedule</button>
+  <p>
+    <button id=go>Create Schedule</button>
+    <button id=print onclick=print()>Print</button>
 </div>
 
 <div id=output>
@@ -326,6 +328,7 @@ $(function()
     }
 
     $('#output').html(output);
+    $('#print').show();
   });
 });
 </script>
