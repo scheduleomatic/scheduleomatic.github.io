@@ -96,6 +96,31 @@ only one dancer.
 
 <script>
 const MAX_DANCERS = 4;
+
+const SCHEDULE =
+    [
+      {
+        date:     'Saturday March 9th',
+        desc:     'Act 2 Rehearsals',
+        location: 'All Saints’ School',
+        event:
+        [
+          {
+            from: '09:45',
+            to:   '10:30',
+            desc: 'Normal class',
+            for:  dancer => dancer.ballet == -2,
+          },
+          {
+            from: '10:30',
+            to:   '11:30',
+            desc: 'Combined class',
+            for:  dancer => dancer.ballet >= -1 && dancer.ballet <= 1,
+          },
+        ],
+        footer:   state => 'Footer message goes here',
+      }
+    ];
 $(function()
 {
   var row = 0;
@@ -149,18 +174,32 @@ $(function()
     );
 
     var row = [];
-
-    var text = $.map(dancer,
-        (dancer) =>
+    $.each(SCHEDULE,
+        (i, day) =>
         {
-          if (dancer.ballet >= 2)
-              return "Big ballet";
-          if (dancer.ballet < 2)
-              return "Little ballet";
-          return "";
+          var text = $.map
+          (
+            family,
+            dancer =>
+            {
+              var item = [];
+              $.each(day.event, (i, event) =>
+              {
+                console.log(event);
+                if ((event.for)(dancer))
+                  item.push('<p><strong>' + event.from
+                      + '</strong>–<strong>' + event.to + '</strong> '
+                      + event.desc);
+              });
+              return item.length >= 1
+                  ? '<p><em>' + day.location + '</em>' + item.join("\n")
+                  : '';
+            }
+          );
+          if (!text.every(content => content == ""))
+            row.push('<h3><strong>' + day.date + '</strong> '
+                + day.desc + '</h3>', text);
         });
-    if (!text.every((content) => content == ""))
-      row.push("<h3><strong>Saturday March 9th</strong> Act 2 Rehearsal<h3>", text);
 
     var output = '';
 
