@@ -3,7 +3,7 @@ body
   color:            #000;
   background-color: #FFF;
 
-  margin:    1ex auto;
+  margin:    1ex auto 10ex;
   padding:   0;
   max-width: 65em;
 }
@@ -94,11 +94,25 @@ button
 {
   background-color: #04BB00;
   color:            #FFF;
-  font-size: 110%;
+  font-size:        110%;
+}
+
+#output
+{
+  margin-top: 5ex;
 }
 
 #output > table
 {
-  width: 100%;
+  width:        100%;
   table-layout: fixed;
 }
+
+#output td, #output th
+{
+  padding: 0.5ex 0.5em;
+}
+
+#output td > :first-child { margin-top:    0 }
+#output td > :last-child  { margin-bottom: 0 }
+#output h3 { padding: 2ex 0 0.5ex }
