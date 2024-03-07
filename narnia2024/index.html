@@ -205,6 +205,31 @@ const SCHEDULE =
         ],
         footer:   state => 'Footer message goes here',
       },
+      {
+        date:     'Monday March 18th',
+        desc:     'In-Theatre Rehearsal',
+        location: 'King’s Hall — arrive 10 min before first on-stage time',
+        event:
+        [
+          {
+            from: '16:00',
+            to:   '16:45',
+            desc: 'Beavers’ scene',
+            for:   dancer =>
+                   dancer.ballet == -2
+                || ['mb', 'fb', 'l'].includes(dancer.principal),
+          },
+          {
+            from: '16:45',
+            to:   '17:15',
+            desc: 'Mr & Mrs Beaver and Robin meet the children',
+            for:   dancer =>
+                   dancer.choreography
+                || ['mb', 'fb', 'r', 'l', 'e', 'p', 's']
+                      .includes(dancer.principal),
+          },
+        ],
+      },
     ];
 $(function()
 {
