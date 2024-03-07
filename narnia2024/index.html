@@ -69,9 +69,9 @@ only one dancer.
       <td>
         <select>
           <option value="">none
-          <option value=1 >Bronze
-          <option value=2 >Silver
-          <option value=3 >Gold
+          <option value=b >Bronze
+          <option value=s >Silver
+          <option value=g >Gold
         </select>
     <tr class=choreography>
       <th>Choreography:
@@ -85,7 +85,19 @@ only one dancer.
       <td>
         <select>
           <option value="">none
-          <option value=fc>Father Christmas
+          <option value=ps>Peter
+          <option value=ps>Susan
+          <option value=e >Edmund
+          <option value=l >Lucy
+          <option value=w >White Witch
+          <option value=d >Dwarf
+          <option value=mb>Mr Beaver
+          <option value=mb>Mrs Beaver
+          <option value=mf>Mr Fox
+          <option value=mt>Mr Tumnus
+          <option value=r >Robin
+          <option value=m >Maugrim
+          <option value=pc>Professor Christmas
         </select>
   </table>
   <p><button id=go>Create Schedule</button>
@@ -116,6 +128,23 @@ const SCHEDULE =
             to:   '11:30',
             desc: 'Combined class',
             for:  dancer => dancer.ballet >= -1 && dancer.ballet <= 1,
+          },
+          {
+            from: '11:30',
+            to:   '14:00',
+            desc: 'Principals’ rehearsal',
+            for:  dancer => dancer.principal,
+          },
+          {
+            from: '14:00',
+            to:   '17:00',
+            desc: 'Act 2 rehearsal',
+            for:  dancer => dancer.jazz == 'g'
+                || dancer.ballet == -2
+                || dancer.choreography
+                || dancer.modern >= 3 && dancer.modern <= 4
+                || ['mt', 'ps', 'e', 'l', 'r', 'mb', 'm', 'w', 'd', 'pc',
+                    'mf'].includes(dancer.principal),
           },
         ],
         footer:   state => 'Footer message goes here',
