@@ -111,6 +111,7 @@
         <select>
           <option value="">(no Bollywood)
           <option value=a >Adult Bollywood
+          <option value=at>Adult Bollywood + Tree
         </select>
   </table>
   <p>
@@ -275,6 +276,7 @@ const SCHEDULE =
             desc: 'Wolf Attacks',
             for:   dancer =>
                    dancer.jazz == 'g'
+                || dancer.bollywood == 'at'
                 || ['mt', 'mb', 'fb', 'l', 's', 'p', 'e', 'w', 'd']
                     .includes(dancer.principal),
           },
@@ -317,6 +319,7 @@ const SCHEDULE =
             desc: 'Lucy Meets Mr Tumnus/Fire',
             for:   dancer =>
                    ['2', '3', '5'].includes(dancer.ballet)
+                || dancer.bollywood == 'at'
                 || ['l', 'mt', 'a', 'w', 'ws'].includes(dancer.principal),
           },
           {
@@ -326,6 +329,7 @@ const SCHEDULE =
             for:   dancer =>
                    ['2', '3', '5'].includes(dancer.ballet)
                 || dancer.associates
+                || dancer.bollywood == 'at'
                 || ['p', 's', 'l', 'e', 'w', 'd', 'mb', 'fb']
                     .includes(dancer.principal),
           },
@@ -360,6 +364,7 @@ const SCHEDULE =
             desc: 'Turkish Delight/Hot Chocolate',
             for:   dancer =>
                    dancer.ballet >= 6
+                || dancer.bollywood == 'at'
                 || ['e', 'w', 'd', 'wr'].includes(dancer.principal),
           },
           {
