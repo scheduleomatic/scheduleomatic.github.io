@@ -367,6 +367,7 @@ const SCHEDULE =
         ],
       },
     ];
+
 $(function()
 {
   var row = 0;
@@ -431,7 +432,6 @@ $(function()
               var item = [];
               $.each(day.event, (i, event) =>
               {
-                console.log(event);
                 if ((event.for)(dancer))
                   item.push('<p><strong>' + event.from
                       + '</strong>–<strong>' + event.to + '</strong> '
@@ -490,7 +490,46 @@ $(function()
 
     $('#output').html(output);
     $('#print').show();
+
+    // Serialize the widget data, to save it for next time:
+    var used_field
+        = [...new Set($.map(family, dancer => Object.keys(dancer)))];
+    var state = $.map
+    (
+      used_field, field =>
+        field + '~' + $.map
+        (
+          family, dancer => (dancer[field] || '').replaceAll(/[~^|]/g, '')
+        ).join('|')
+    ).join('^');
+
+    // Rewrite the URL with the widget data, so it reflects what's being
+    // displayed, and coming back here will show the same:
+    var url = new URL(location);
+    url.searchParams.set('state', state);
+    history.pushState({}, '', url);
   });
+
+  // Populate the widgets, if saved state is found in the URL:
+  var state = new URL(location).searchParams.get('state');
+  if (state)
+  {
+    // Clear any values the browser has remembered on reload, so as to set only
+    // those being loaded:
+    $(':input').val('');
+
+    // Populate the widgets:
+    $.each(state.split('^'), (i, row) =>
+        {
+          [field, data] = row.split('~');
+          $.each(data.split('|'),
+              (col, val) => $('.' + field + ' :input').eq(col).val(val));
+        });
+
+    // We have data, so show the schedule:
+    $('#go').click();
+  }
+
 });
 </script>
 
