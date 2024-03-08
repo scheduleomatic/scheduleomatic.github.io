@@ -62,7 +62,7 @@
           <option value=3 >Mon 17:00, Grade 3 Ballet
           <option value=6 >Tue 18:30, Class Level 6/Grade 5 Ballet
           <option value=4 >Wed 18:00, Class Level 4 Ballet
-          <option value=7 >Fri 16:30, Grade 6 Ballet
+          <option value=7 >Fri 16:30, Intermediate Ballet
           <option value=5 >Fri 18:30, Class Level 5 Ballet
         </select>
     <tr class=modern>
@@ -302,7 +302,7 @@ const SCHEDULE =
             to:   '16:45',
             desc: 'Snow',
             for:   dancer =>
-                   dancer.ballet <= 1 || dancer.ballet == 6,
+                   dancer.ballet <= 1 || dancer.ballet >= 6,
           },
           {
             from: '16:45',
