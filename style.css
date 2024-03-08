@@ -105,7 +105,7 @@ button
   background-color: #04BB00;
 }
 
-button:hover, #go:hover
+button:hover:not(:disabled), #go:hover
 {
   background-color: #04A700;
   color:            #FF6;
@@ -116,7 +116,7 @@ button + button
   margin-left: 0.5em;
 }
 
-#print  { display: none }
+.action  { display: none }
 
 #input  { margin-bottom: 1.5ex }
 #output { margin-top:    3.5ex }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <script src=https://code.jquery.com/jquery-3.7.1.slim.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js></script>
 <link rel=stylesheet href=../style.css>
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
@@ -114,7 +115,10 @@
   </table>
   <p>
     <button id=go>Create Schedule</button>
-    <button id=print onclick=print()>Print</button>
+    <button class=action onclick=print()>Print</button>
+    <button class=action onclick=save()
+        title="Set a cookie to remember these dancers on this browser."
+        >Save</button>
 </div>
 
 <div id=output>
@@ -368,6 +372,7 @@ const SCHEDULE =
       },
     ];
 
+var State;
 $(function()
 {
   var row = 0;
@@ -489,12 +494,12 @@ $(function()
     }
 
     $('#output').html(output);
-    $('#print').show();
+    $('.action').prop('disabled', false).show();
 
     // Serialize the widget data, to save it for next time:
     var used_field
         = [...new Set($.map(family, dancer => Object.keys(dancer)))];
-    var state = $.map
+    State = $.map
     (
       used_field, field =>
         field + '~' + $.map
@@ -506,12 +511,14 @@ $(function()
     // Rewrite the URL with the widget data, so it reflects what's being
     // displayed, and coming back here will show the same:
     var url = new URL(location);
-    url.searchParams.set('state', state);
+    url.searchParams.set('state', State);
     history.pushState({}, '', url);
   });
 
-  // Populate the widgets, if saved state is found in the URL:
+  // Populate the widgets, if saved state is found in the URL or a cookie:
   var state = new URL(location).searchParams.get('state');
+  if (!state)
+    state = Cookies.get('state');
   if (state)
   {
     // Clear any values the browser has remembered on reload, so as to set only
@@ -529,8 +536,13 @@ $(function()
     // We have data, so show the schedule:
     $('#go').click();
   }
-
 });
+
+
+function save() {
+  Cookies.set('state', State, {expires: 100, sameSite: 'Lax'});
+  $(event.target).prop('disabled', true);
+}
 </script>
 
 <!--
