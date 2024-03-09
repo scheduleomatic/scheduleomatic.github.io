@@ -65,7 +65,7 @@
           <option value=6 >Tue 18:30, Class Level 6/Grade 5 Ballet
           <option value=4 >Wed 18:00, Class Level 5 Ballet
           <option value=7 >Fri 16:30, Intermediate Ballet
-          <option value=5 >Fri 18:30, Class Level 5 Ballet
+          <option value=5 >Fri 18:30, Class Level 6 Ballet
         </select>
     <tr class=modern>
       <th>Modern/Tap:
@@ -205,7 +205,7 @@ const SCHEDULE =
             to:   '12:00',
             desc: 'Act 3 rehearsal',
             for:   dancer =>
-                   dancer.ballet >= 2 && dancer.ballet <= 5
+                   dancer.ballet >= 2 && dancer.ballet <= 4
                 || dancer.modern >= 5 && dancer.modern <= 6
                 || dancer.associates
                 || dancer.bollywood
@@ -305,7 +305,7 @@ const SCHEDULE =
             to:   '16:45',
             desc: 'Snow',
             for:   dancer =>
-                   dancer.ballet <= 1 || dancer.ballet >= 6,
+                   dancer.ballet <= 1 || dancer.ballet >= 5,
           },
           {
             from: '16:45',
@@ -321,7 +321,7 @@ const SCHEDULE =
             to:   '18:00',
             desc: 'Lucy Meets Mr Tumnus/Fire',
             for:   dancer =>
-                   dancer.ballet >= 2 && dancer.ballet <= 5
+                   dancer.ballet >= 2 && dancer.ballet <= 4
                 || dancer.bollywood == 'at'
                 || ['l', 'mt', 'a', 'w', 'ws'].includes(dancer.principal),
           },
@@ -330,7 +330,7 @@ const SCHEDULE =
             to:   '18:45',
             desc: 'Spring',
             for:   dancer =>
-                   dancer.ballet >= 2 && dancer.ballet <= 5
+                   dancer.ballet >= 2 && dancer.ballet <= 4
                 || dancer.associates
                 || dancer.bollywood == 'at'
                 || ['p', 's', 'l', 'e', 'w', 'd', 'mb', 'fb']
@@ -351,7 +351,7 @@ const SCHEDULE =
             to:   '20:00',
             desc: 'Coronation/Bows',
             for:   dancer =>
-                   dancer.ballet >= 2 && dancer.ballet <= 5
+                   dancer.ballet >= 2 && dancer.ballet <= 4
                 || dancer.modern >= 5 && dancer.modern <= 6
                 || dancer.associates
                 || dancer.bollywood
@@ -365,7 +365,7 @@ const SCHEDULE =
             to:   '20:30',
             desc: 'Turkish Delight/Hot Chocolate',
             for:   dancer =>
-                   dancer.ballet >= 6
+                   dancer.ballet >= 5
                 || dancer.bollywood == 'at'
                 || ['e', 'w', 'd', 'wr'].includes(dancer.principal),
           },
