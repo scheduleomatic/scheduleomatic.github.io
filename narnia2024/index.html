@@ -118,10 +118,12 @@
   </table>
   <p>
     <button id=go>Create Schedule</button>
-    <button class=action onclick=print()>Print</button>
-    <button class=action onclick=save()
-        title="Set a cookie to remember these dancers on this browser."
-        >Save</button>
+    <span class=action>
+      <button onclick=print()>Print</button>
+      <button onclick=save()
+          title="Set a cookie to remember these dancers on this browser."
+          >Save</button>
+    </span>
 </div>
 
 <div id=output>
@@ -501,7 +503,8 @@ $(function()
     }
 
     $('#output').html(output);
-    $('.action').prop('disabled', false).show();
+    $('.action').show();
+    $('.action button').prop('disabled', false);
 
     // Serialize the widget data, to save it for next time:
     var used_field

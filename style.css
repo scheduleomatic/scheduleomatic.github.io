@@ -114,12 +114,12 @@ button:hover:not(:disabled), #go:hover
   color:            #FF6;
 }
 
-button + button
+button + button, .action
 {
   margin-left: 0.5em;
 }
 
-.action  { display: none }
+.action { display: none }
 
 #input  { margin-bottom: 1.5ex }
 #output { margin-top:    3.5ex }
