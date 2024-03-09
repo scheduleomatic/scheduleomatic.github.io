@@ -77,11 +77,11 @@
           <option value=3 >Tue 17:30, Grade 3 Modern/Tap
           <option value=1 >Wed 16:00, Grade 1 Modern/Tap
           <option value=2 >Wed 17:00, Grade 2 Modern/Tap
-          <option value=ab>Wed 19:00, Adult Beginners Tap
+          <option value=10>Wed 19:00, Adult Beginners Tap
           <option value=4 >Thu 16:00, Grade 4 Modern/Tap
           <option value=5 >Thu 18:00, Grade 5 Modern/Tap
           <option value=6 >Thu 19:00, Grade 6 Modern/Tap
-          <option value=ai>Fri 19:30, Adult Improvers Tap
+          <option value=11>Fri 19:30, Adult Improvers Tap
         </select>
     <tr class=jazz>
       <th>Jazz:
@@ -289,7 +289,7 @@ const SCHEDULE =
             desc: 'Aslan & Queen’s Conversation',
             for:   dancer =>
                    dancer.bollywood
-                || dancer.modern >= 4
+                || dancer.modern >= 4 && dancer.modern <= 6
                 || ['a', 'l', 's', 'p', 'e', 'w'].includes(dancer.principal),
           },
         ],
@@ -373,8 +373,7 @@ const SCHEDULE =
             from: '20:30',
             to:   '21:00',
             desc: 'Babes of Blitz',
-            for:   dancer =>
-                   ['5', '6', 'ab', 'ai'].includes(dancer.modern),
+            for:   dancer => dancer.modern >= 5,
           },
         ],
       },
