@@ -63,7 +63,7 @@
           <option value=2 >Mon 16:00, Grade 2 Ballet
           <option value=3 >Mon 17:00, Grade 3 Ballet
           <option value=6 >Tue 18:30, Class Level 6/Grade 5 Ballet
-          <option value=4 >Wed 18:00, Class Level 4 Ballet
+          <option value=4 >Wed 18:00, Class Level 5 Ballet
           <option value=7 >Fri 16:30, Intermediate Ballet
           <option value=5 >Fri 18:30, Class Level 5 Ballet
         </select>
@@ -205,8 +205,7 @@ const SCHEDULE =
             to:   '12:00',
             desc: 'Act 3 rehearsal',
             for:   dancer =>
-                   dancer.ballet >= 2 && dancer.ballet <= 3
-                || dancer.ballet == 5
+                   dancer.ballet >= 2 && dancer.ballet <= 5
                 || dancer.modern >= 5 && dancer.modern <= 6
                 || dancer.associates
                 || dancer.bollywood
@@ -322,7 +321,7 @@ const SCHEDULE =
             to:   '18:00',
             desc: 'Lucy Meets Mr Tumnus/Fire',
             for:   dancer =>
-                   ['2', '3', '5'].includes(dancer.ballet)
+                   dancer.ballet >= 2 && dancer.ballet <= 5
                 || dancer.bollywood == 'at'
                 || ['l', 'mt', 'a', 'w', 'ws'].includes(dancer.principal),
           },
@@ -331,7 +330,7 @@ const SCHEDULE =
             to:   '18:45',
             desc: 'Spring',
             for:   dancer =>
-                   ['2', '3', '5'].includes(dancer.ballet)
+                   dancer.ballet >= 2 && dancer.ballet <= 5
                 || dancer.associates
                 || dancer.bollywood == 'at'
                 || ['p', 's', 'l', 'e', 'w', 'd', 'mb', 'fb']
@@ -352,8 +351,7 @@ const SCHEDULE =
             to:   '20:00',
             desc: 'Coronation/Bows',
             for:   dancer =>
-                   dancer.ballet >= 2 && dancer.ballet <= 3
-                || dancer.ballet == 5
+                   dancer.ballet >= 2 && dancer.ballet <= 5
                 || dancer.modern >= 5 && dancer.modern <= 6
                 || dancer.associates
                 || dancer.bollywood
