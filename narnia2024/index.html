@@ -123,6 +123,7 @@
       <button onclick=save()
           title="Set a cookie to remember these dancers on this browser."
           >Save</button>
+      <button onclick=clear_form()>Clear</button>
     </span>
 </div>
 
@@ -552,6 +553,19 @@ $(function()
 function save() {
   Cookies.set('state', State, {expires: 100, sameSite: 'Lax'});
   $(event.target).prop('disabled', true);
+}
+
+
+function clear_form() {
+  $(':input').val('');
+  $('#output').html('');
+  $('.action').hide();
+
+  var url = new URL(location);
+  url.searchParams.delete('state');
+  history.pushState({}, '', url);
+
+  Cookies.remove('state', {sameSite: 'Lax'});
 }
 </script>
 
