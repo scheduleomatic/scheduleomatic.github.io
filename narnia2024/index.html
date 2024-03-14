@@ -457,7 +457,7 @@ $(function()
           );
           if (!text.every(content => content == ""))
             row.push('<h3><strong>' + day.date + '</strong> '
-                + day.desc + '</h3>', text);
+                + (day.desc || '') + '</h3>', text);
         });
 
     var output = '';
