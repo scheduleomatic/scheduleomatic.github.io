@@ -195,6 +195,25 @@ const SCHEDULE =
         ],
       },
       {
+        date:     'Saturday March 16th',
+        location: 'All Saints’ School',
+        event:
+        [
+          {
+            from: '09:45',
+            to:   '10:30',
+            desc: 'Normal class',
+            for:  dancer => dancer.ballet == 'ss',
+          },
+          {
+            from: '10:30',
+            to:   '11:30',
+            desc: 'Combined class',
+            for:  dancer => dancer.ballet <= 1,
+          },
+        ],
+      },
+      {
         date:     'Sunday March 17th',
         desc:     'Act 3 Rehearsal',
         location: 'All Saints’ School',
