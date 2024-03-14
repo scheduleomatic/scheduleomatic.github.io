@@ -452,31 +452,36 @@ $(function()
           ($.map(record, pair => [[pair.label, pair.val]]))
     );
 
+    var today = new Date();
+    today.setHours(0,0,0);
     var row = [];
     $.each(SCHEDULE,
         (i, day) =>
         {
-          var text = $.map
-          (
-            family,
-            dancer =>
-            {
-              var item = [];
-              $.each(day.event, (i, event) =>
+          if (new Date(day.date.replace(/[a-z]{2}$/, ' 2024')) >= today)
+          {
+            var text = $.map
+            (
+              family,
+              dancer =>
               {
-                if ((event.for)(dancer))
-                  item.push('<p><strong>' + event.from
-                      + '</strong>–<strong>' + event.to + '</strong> '
-                      + event.desc);
-              });
-              return item.length >= 1
-                  ? '<p><em>' + day.location + '</em>' + item.join("\n")
-                  : '';
-            }
-          );
-          if (!text.every(content => content == ""))
-            row.push('<h3><strong>' + day.date + '</strong> '
-                + (day.desc || '') + '</h3>', text);
+                var item = [];
+                $.each(day.event, (i, event) =>
+                {
+                  if ((event.for)(dancer))
+                    item.push('<p><strong>' + event.from
+                        + '</strong>–<strong>' + event.to + '</strong> '
+                        + event.desc);
+                });
+                return item.length >= 1
+                    ? '<p><em>' + day.location + '</em>' + item.join("\n")
+                    : '';
+              }
+            );
+            if (!text.every(content => content == ""))
+              row.push('<h3><strong>' + day.date + '</strong> '
+                  + (day.desc || '') + '</h3>', text);
+          }
         });
 
     var output = '';
