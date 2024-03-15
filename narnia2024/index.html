@@ -273,7 +273,7 @@ const SCHEDULE =
             desc: 'Christmas Party',
             for:   dancer =>
                    dancer.modern == 3
-                || ['pc', 'sr', 'mb', 'fb', 'p', 's', 'l', 'e', 'w', 'd', 'wr']
+                || ['pc', 'sr', 'mb', 'fb', 'p', 's', 'l', 'e', 'w', 'd']
                     .includes(dancer.principal),
           },
           {
@@ -353,7 +353,7 @@ const SCHEDULE =
                    dancer.ballet >= 2 && dancer.ballet <= 4
                 || dancer.associates
                 || dancer.bollywood == 'at'
-                || ['p', 's', 'l', 'e', 'w', 'd', 'mb', 'fb']
+                || ['p', 's', 'l', 'e', 'w', 'd', 'wr', 'mb', 'fb']
                     .includes(dancer.principal),
           },
           {
