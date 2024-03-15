@@ -36,13 +36,14 @@
           <option value=s >Susan
           <option value=e >Edmund
           <option value=l >Lucy
-          <option value=a >Aslan
-          <option value=w >White Witch
+          <option value=a >Aslan/Clipboard Lady
+          <option value=w >White Witch/Clipboard Lady
           <option value=d >Dwarf
           <option value=m >Maugrim
           <option value=wr>Witch’s Reindeer
-          <option value=mb>Mr Beaver
-          <option value=fb>Mrs Beaver
+          <option value=mb>Mr Beaver/Clipboard Lady
+          <option value=fb>Mrs Beaver/Train Driver
+          <option value=cl>Clipboard Lady
           <option value=mf>Mr Fox
           <option value=mt>Mr Tumnus
           <option value=r >Robin
@@ -157,7 +158,7 @@ const SCHEDULE =
             from: '11:30',
             to:   '14:00',
             desc: 'Principals’ rehearsal',
-            for:  dancer => dancer.principal,
+            for:  dancer => dancer.principal != 'cl',
           },
           {
             from: '14:00',
@@ -265,7 +266,8 @@ const SCHEDULE =
             desc: 'Evacuees/Train Station',
             for:   dancer =>
                    dancer.modern <= 4
-                || ['l', 'e', 'p', 's'].includes(dancer.principal),
+                || ['l', 'e', 'p', 's', 'fb', 'a', 'w', 'mb', 'cl']
+                      .includes(dancer.principal),
           },
           {
             from: '18:00',
