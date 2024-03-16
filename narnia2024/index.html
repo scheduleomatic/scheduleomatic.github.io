@@ -52,6 +52,13 @@
           <option value=pc>Professor Christmas
           <option value=sr>Santa’s Reindeer
         </select>
+    <tr class=gender>
+      <th>Gender:
+      <td>
+        <select>
+          <option value="">female
+          <option value=m >male
+        </select>
     <tr class=ballet>
       <th>Ballet:
       <td>
@@ -212,7 +219,13 @@ const SCHEDULE =
             from: '10:30',
             to:   '11:30',
             desc: 'Combined class',
-            for:  dancer => dancer.ballet <= 1,
+            for:  dancer => dancer.ballet <= 1 && dancer.gender == 'm',
+          },
+          {
+            from: '10:30',
+            to:   '12:00',
+            desc: 'Combined class, then tutu fitting',
+            for:  dancer => dancer.ballet <= 1 && dancer.gender != 'm',
           },
         ],
       },
