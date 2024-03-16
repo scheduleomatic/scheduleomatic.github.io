@@ -134,6 +134,8 @@
 <script>
 const MAX_DANCERS = 4;
 
+function evacuee(dancer) { return dancer.modern <= 4 }
+
 const SCHEDULE =
     [
       {
@@ -265,7 +267,7 @@ const SCHEDULE =
             to:   '18:00',
             desc: 'Evacuees/Train Station',
             for:   dancer =>
-                   dancer.modern <= 4
+                   evacuee(dancer)
                 || ['l', 'e', 'p', 's', 'fb', 'a', 'w', 'mb', 'cl']
                       .includes(dancer.principal),
           },
