@@ -1176,6 +1176,36 @@ const SCHEDULE =
           },
         ],
       },
+      {
+        date:     'December 6th–7th 2024',
+        desc:     'Christmas Cabaret',
+        location: 'St John’s Church',
+        event:
+        [
+          {
+            from: 'TBA',
+            desc: 'Back after a year off — save the dates!',
+            for:   dancer =>
+                   dancer.modern
+                || dancer.jazz
+                || dancer.associates
+                || dancer.choreography
+          },
+        ],
+      },
+      {
+        date:     'November 27th–29th 2025',
+        desc:     'Next Theatre Show',
+        location: 'King’s Hall',
+        event:
+        [
+          {
+            from: 'TBA',
+            desc: 'Let’s do this all again next year!',
+            for:   () => true,
+          },
+        ],
+      },
     ];
 
 var State;
@@ -1237,7 +1267,7 @@ $(function()
     $.each(SCHEDULE,
         (i, day) =>
         {
-          if (new Date(day.date.replace(/[a-z]{2}$/, ' 2024')) >= today)
+          if (!(new Date(day.date.replace(/[a-z]{2}$/, ' 2024')) < today))
           {
             var text = $.map
             (
