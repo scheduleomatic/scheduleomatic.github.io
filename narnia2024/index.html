@@ -425,7 +425,7 @@ const SCHEDULE =
           {
             from: '18:15',
             desc: 'Drop-off, with box, costume, suitcase, and gas-mask box',
-            for:   dancer => dancer.modern < 2,
+            for:   dancer => dancer.modern <= 2,
           },
           {
             from: '19:40+',
@@ -462,7 +462,7 @@ const SCHEDULE =
                    dancer.gender != 'm' && !evacuee(dancer) &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -475,7 +475,7 @@ const SCHEDULE =
                    dancer.gender != 'm' && evacuee(dancer) &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -488,7 +488,7 @@ const SCHEDULE =
                    dancer.gender == 'm' && !evacuee(dancer) &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -501,7 +501,7 @@ const SCHEDULE =
                    dancer.gender == 'm' && evacuee(dancer) &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.principal
                    ),
@@ -594,7 +594,7 @@ const SCHEDULE =
           {
             from: '18:15',
             desc: 'Drop-off',
-            for:   dancer => dancer.modern < 2,
+            for:   dancer => dancer.modern <= 2,
           },
           {
             from: '19:40',
@@ -631,7 +631,7 @@ const SCHEDULE =
                    dancer.gender != 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -644,7 +644,7 @@ const SCHEDULE =
                    dancer.gender == 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -738,7 +738,7 @@ const SCHEDULE =
           {
             from: '18:15',
             desc: 'Drop-off',
-            for:   dancer => dancer.modern < 2,
+            for:   dancer => dancer.modern <= 2,
           },
           {
             from: '19:40',
@@ -775,7 +775,7 @@ const SCHEDULE =
                    dancer.gender != 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -788,7 +788,7 @@ const SCHEDULE =
                    dancer.gender == 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -882,7 +882,7 @@ const SCHEDULE =
           {
             from: '13:45',
             desc: 'Afternoon drop-off',
-            for:   dancer => dancer.modern < 2,
+            for:   dancer => dancer.modern <= 2,
           },
           {
             from: '15:10',
@@ -920,7 +920,7 @@ const SCHEDULE =
                    dancer.gender != 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -933,7 +933,7 @@ const SCHEDULE =
                    dancer.gender == 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -1020,7 +1020,7 @@ const SCHEDULE =
           {
             from: '17:45',
             desc: 'Evening drop-off',
-            for:   dancer => dancer.modern < 2,
+            for:   dancer => dancer.modern <= 2,
           },
           {
             from: '19:10',
@@ -1058,7 +1058,7 @@ const SCHEDULE =
                    dancer.gender != 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
@@ -1071,7 +1071,7 @@ const SCHEDULE =
                    dancer.gender == 'm' &&
                    (
                         dancer.ballet >= 2
-                     || dancer.modern >= 2
+                     || dancer.modern >  2
                      || dancer.associates
                      || dancer.choreography
                      || dancer.principal
