@@ -1156,6 +1156,26 @@ const SCHEDULE =
           },
         ],
       },
+      {
+        date:     'Sunday March 24th',
+        desc:     'Costume Return',
+        location: 'Lynne’s Home',
+        event:
+        [
+          {
+            from: '10:00',
+            to:   '13:00',
+            desc: 'Bring costumes back any time in this window',
+            for:   dancer =>
+                   dancer.principal
+                || dancer.jazz
+                || dancer.bollywood
+                || dancer.associates
+                || dancer.ballet >= 2
+                || dancer.modern >= 3,
+          },
+        ],
+      },
     ];
 
 var State;
