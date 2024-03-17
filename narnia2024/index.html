@@ -142,7 +142,9 @@
 <script>
 const MAX_DANCERS = 4;
 
-function evacuee(dancer) { return dancer.modern <= 4 }
+function evacuee(dancer)     { return dancer.modern <= 4 }
+function snowflake(dancer)   { return dancer.ballet <= 1 }
+function baby_beaver(dancer) { return dancer.ballet == 'ss' }
 
 const SCHEDULE =
     [
@@ -162,7 +164,7 @@ const SCHEDULE =
             from: '10:30',
             to:   '11:30',
             desc: 'Combined class',
-            for:  dancer => dancer.ballet <= 1,
+            for:  snowflake,
           },
           {
             from: '11:30',
@@ -176,7 +178,7 @@ const SCHEDULE =
             desc: 'Act 2 rehearsal',
             for:   dancer =>
                    dancer.jazz == 'g'
-                || dancer.ballet == 'ss'
+                || baby_beaver(dancer)
                 || dancer.choreography
                 || dancer.modern >= 3 && dancer.modern <= 4
                 || ['mt', 'p', 's', 'e', 'l', 'r', 'mb', 'fb', 'm', 'w', 'd',
@@ -220,13 +222,13 @@ const SCHEDULE =
             from: '10:30',
             to:   '11:30',
             desc: 'Combined class',
-            for:  dancer => dancer.ballet <= 1 && dancer.gender == 'm',
+            for:  dancer => snowflake(dancer) && dancer.gender == 'm',
           },
           {
             from: '10:30',
             to:   '12:00',
             desc: 'Combined class, then tutu fitting',
-            for:  dancer => dancer.ballet <= 1 && dancer.gender != 'm',
+            for:  dancer => snowflake(dancer) && dancer.gender != 'm',
           },
         ],
       },
@@ -264,7 +266,7 @@ const SCHEDULE =
             to:   '16:45',
             desc: 'Beavers',
             for:   dancer =>
-                   dancer.ballet == 'ss'
+                   baby_beaver(dancer)
                 || ['mb', 'fb', 'l'].includes(dancer.principal),
           },
           {
@@ -342,8 +344,7 @@ const SCHEDULE =
             from: '16:00',
             to:   '16:45',
             desc: 'Snow',
-            for:   dancer =>
-                   dancer.ballet <= 1 || dancer.ballet >= 5,
+            for:   dancer => snowflake(dancer) || dancer.ballet >= 5,
           },
           {
             from: '16:45',
@@ -412,6 +413,175 @@ const SCHEDULE =
             to:   '21:00',
             desc: 'Babies of the Blitz',
             for:   dancer => dancer.modern >= 5,
+          },
+        ],
+      },
+      {
+        date:     'Wednesday March 20th',
+        desc:     'Dress Rehearsal',
+        location: 'King’s Hall',
+        event:
+        [
+          {
+            from: '18:15',
+            desc: 'Drop-off, with box, costume, suitcase, and gas-mask box',
+            for:   dancer => dancer.modern < 2,
+          },
+          {
+            from: '19:40+',
+            desc: '(end of Act 1) Collection',
+            for:   dancer => dancer.modern <= 2 && !dancer.ballet,
+          },
+
+          {
+            from: '18:45',
+            desc: 'Drop-off, with box',
+            for:   dancer => snowflake(dancer) && !evacuee(dancer),
+          },
+          {
+            from: '19:50+',
+            desc: '(mid-interval 1) Collection',
+            for:   snowflake,
+          },
+
+          {
+            from: '19:20',
+            desc: 'Drop-off, with box',
+            for:   baby_beaver,
+          },
+          {
+            from: '20:30+',
+            desc: 'Collection',
+            for:   baby_beaver,
+          },
+
+          {
+            from: '18:00',
+            desc: 'Drop-off, with box and costumes',
+            for:   dancer =>
+                   dancer.gender != 'm' && !evacuee(dancer) &&
+                   (
+                        dancer.ballet >= 2
+                     || dancer.modern >= 2
+                     || dancer.associates
+                     || dancer.choreography
+                     || dancer.principal
+                   ),
+          },
+          {
+            from: '18:00',
+            desc: 'Drop-off, with box, costumes, suitcase, and gas-mask box',
+            for:   dancer =>
+                   dancer.gender != 'm' && evacuee(dancer) &&
+                   (
+                        dancer.ballet >= 2
+                     || dancer.modern >= 2
+                     || dancer.associates
+                     || dancer.choreography
+                     || dancer.principal
+                   ),
+          },
+          {
+            from: '18:15',
+            desc: 'Drop-off, with box and costumes',
+            for:   dancer =>
+                   dancer.gender == 'm' && !evacuee(dancer) &&
+                   (
+                        dancer.ballet >= 2
+                     || dancer.modern >= 2
+                     || dancer.associates
+                     || dancer.choreography
+                     || dancer.principal
+                   ),
+          },
+          {
+            from: '18:15',
+            desc: 'Drop-off, with box, costumes, suitcase, and gas-mask box',
+            for:   dancer =>
+                   dancer.gender == 'm' && evacuee(dancer) &&
+                   (
+                        dancer.ballet >= 2
+                     || dancer.modern >= 2
+                     || dancer.associates
+                     || dancer.principal
+                   ),
+          },
+
+          {
+            from: '??:??',
+            desc: 'Drop-off, with box and costume',
+            for:   dancer =>
+                   dancer.jazz == 'g' &&
+		   !(
+                        dancer.ballet
+                     || dancer.modern
+                     || dancer.principal
+                   )
+          },
+          {
+            from: '??:??',
+            desc: 'Drop-off, with box and costume',
+            for:   dancer =>
+                   dancer.jazz && dancer.jazz != 'g' &&
+		   !(
+                        dancer.ballet
+                     || dancer.modern
+                     || dancer.principal
+                   )
+          },
+          {
+            from: '??:??',
+            desc: 'Drop-off, with box and costume',
+            for:   dancer => dancer.bollywood && !dancer.modern
+          },
+
+
+          {
+            from: '21:30+',
+            desc: '(end of show) Collection',
+            for:   dancer =>
+                   (
+                        dancer.ballet >= 2 && dancer.ballet <= 4
+                     || dancer.modern >= 5 && dancer.modern <= 6
+                     || dancer.jazz
+                     || dancer.associates
+                     || dancer.choreography
+                     || dancer.principal
+                     || dancer.bollywood
+                   ),
+          },
+
+          {
+            from: '??:??',
+            desc: 'Collection',
+            for:   dancer =>
+                   dancer.ballet >= 5 &&
+                   !(
+                        dancer.modern
+                     || dancer.jazz
+                     || dancer.associates
+                     || dancer.choreography
+                     || dancer.principal
+                   ),
+          },
+          {
+            from: '??:??',
+            desc: 'Collection',
+            for:   dancer =>
+                   dancer.modern >= 3 && dancer.modern <= 4 &&
+                   !(
+                        dancer.ballet >= 2 && dancer.ballet <= 4
+                     || dancer.jazz
+                     || dancer.associates
+                     || dancer.choreography
+                     || dancer.principal
+                   ),
+          },
+          {
+            from: '??:??',
+            desc: 'Collection',
+            for:   dancer =>
+                   dancer.modern >= 10 && !dancer.bollywood
           },
         ],
       },
@@ -487,8 +657,9 @@ $(function()
                 $.each(day.event, (i, event) =>
                 {
                   if ((event.for)(dancer))
-                    item.push('<p><strong>' + event.from
-                        + '</strong>–<strong>' + event.to + '</strong> '
+                    item.push('<p><strong>' + event.from + '</strong>'
+                        + (event.to ? '–<strong>' + event.to + '</strong> '
+                            : ' ')
                         + event.desc);
                 });
                 return item.length >= 1
