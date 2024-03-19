@@ -576,6 +576,7 @@ const SCHEDULE =
         date:     'Thursday March 21st',
         desc:     'Opening Night',
         location: 'King’s Hall',
+        info:     'Showtime: 19:00',
         event:
         [
           {
@@ -707,6 +708,7 @@ const SCHEDULE =
         date:     'Friday March 22nd',
         desc:     'Performance',
         location: 'King’s Hall',
+        info:     'Showtime: 19:00',
         event:
         [
           {
@@ -838,6 +840,7 @@ const SCHEDULE =
         date:     'Saturday March 23rd',
         desc:     'Final Performances',
         location: 'King’s Hall',
+        info:     'Showtimes: 14:30 and 18:30',
         event:
         [
           {
@@ -1114,32 +1117,12 @@ const SCHEDULE =
       {
         date:     'December 6th–7th 2024',
         desc:     'Christmas Cabaret',
-        location: 'St John’s Church',
-        event:
-        [
-          {
-            from: 'TBA',
-            desc: 'Back after a year off — save the dates!',
-            for:   dancer =>
-                   dancer.modern
-                || dancer.jazz
-                || dancer.associates
-                || dancer.choreography
-          },
-        ],
+        info:     'Save the dates! Back at St John’s church, after a year off',
       },
       {
         date:     'November 20th–22nd 2025',
         desc:     'Next Theatre Show',
-        location: 'King’s Hall',
-        event:
-        [
-          {
-            from: 'TBA',
-            desc: 'Let’s do this all again next year!',
-            for:   () => true,
-          },
-        ],
+        info:     'Let’s do this all again next year!',
       },
     ];
 
@@ -1223,9 +1206,12 @@ $(function()
                     : '';
               }
             );
-            if (!text.every(content => content == ""))
+            if (text.every(content => content == ""))
+                text = [];
+            if (text || !day.event)
               row.push('<h3><strong>' + day.date + '</strong> '
-                  + (day.desc || '') + '</h3>', text);
+                  + (day.desc || '') + '</h3>'
+                  + (day.info ? '<p>' + day.info : ''), text);
           }
         });
 

@@ -144,7 +144,8 @@ button + button, .action
 
 #output td > :first-child { margin-top:    0 }
 #output td > :last-child  { margin-bottom: 0 }
-#output h3                { padding:       2ex 0 0.5ex }
+#output td[colspan]       { padding:       3ex 0 1ex }
+#output h3                { margin:        0 }
 #output td p              { margin:        1ex 0 }
 
 @media print
