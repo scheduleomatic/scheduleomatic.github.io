@@ -144,12 +144,13 @@ button + button, .action
 
 #output td > :first-child { margin-top:    0 }
 #output td > :last-child  { margin-bottom: 0 }
-#output h3 { padding: 2ex 0 0.5ex }
+#output h3                { padding:       2ex 0 0.5ex }
+#output td p              { margin:        1ex 0 }
 
 @media print
 {
   #input { display: none }
 
-  h1, h2 { font-size: 180% }
-  h3     { font-size: 140% }
+  body   { font-size: 87% }
+  h1, h2 { font-size: 200% }
 }
