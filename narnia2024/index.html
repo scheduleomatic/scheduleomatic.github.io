@@ -1003,30 +1003,14 @@ const SCHEDULE =
           },
 
           {
-            from: '17:30',
-            desc: 'Evening drop-off',
-            for:   dancer =>
-                   dancer.gender != 'm' &&
-                   (
-                        dancer.ballet >= 2
-                     || dancer.modern >  2
-                     || dancer.associates
-                     || dancer.choreography
-                     || dancer.principal
-                   ),
-          },
-          {
             from: '17:45',
             desc: 'Evening drop-off',
             for:   dancer =>
-                   dancer.gender == 'm' &&
-                   (
-                        dancer.ballet >= 2
-                     || dancer.modern >  2
-                     || dancer.associates
-                     || dancer.choreography
-                     || dancer.principal
-                   ),
+                   dancer.ballet >= 2
+                 || dancer.modern >  2
+                 || dancer.associates
+                 || dancer.choreography
+                 || dancer.principal
           },
 
           {
